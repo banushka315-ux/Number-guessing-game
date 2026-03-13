@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Guessing Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f5f5f5;
+      padding-top: 50px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Number Guessing Game</h1>
+  <p>Guess a number between 1 and 100</p>
+
+  <input type="number" id="userGuess" placeholder="Enter your guess">
+  <button onclick="checkGuess()">Guess</button>
+
+  <p id="message"></p>
+  <p id="attempts"></p>
+
+  <script>
+    let secretNumber = Math.floor(Math.random() * 100) + 1;
+    let tries = 0;
+
+    function checkGuess() {
+      let userGuess = Number(document.getElementById("userGuess").value);
+      tries++;
+
+      if(userGuess === secretNumber) {
+        document.getElementById("message").innerText = `🎉 Congratulations! You guessed it in ${tries} attempts.`;
+      } else if(userGuess < secretNumber) {
+        document.getElementById("message").innerText = "🔼 Too low! Try a higher number.";
+      } else {
+        document.getElementById("message").innerText = "🔽 Too high! Try a lower number.";
+      }
+
+      document.getElementById("attempts").innerText = `Attempts: ${tries}`;
+      document.getElementById("userGuess").value = "";
+    }
+  </script>
+
+</body>
+</html>
